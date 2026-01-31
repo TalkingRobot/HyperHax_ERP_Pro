@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的邮箱</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f1f1f1;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        header {
+            background-color: #378378;
+            color: white;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        input[type="text"] {
+            padding: 8px;
+            border: none;
+            border-radius: 4px;
+        }
+
+        main {
+            display: flex;
+            flex: 1;
+        }
+
+        aside {
+            width: 200px;
+            background-color: #fff;
+            border-right: 1px solid #ddd;
+        }
+
+        aside ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        aside li {
+            padding: 15px;
+            cursor: pointer;
+        }
+
+        aside li:hover {
+            background-color: #f0f0f0;
+        }
+
+        .email-list, .compose-email {
+            flex: 1;
+            padding: 20px;
+            background-color: #fff;
+            display: none;
+        }
+
+        .compose-email input, .compose-email textarea {
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .compose-email textarea {
+            height: calc(100% - 150px);
+            resize: none;
+        }
+
+        .compose-email button {
+            padding: 10px 15px;
+            background-color: #4285f4;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>我的邮箱</h1>
+            <input type="text" placeholder="搜索邮件..." id="search" style="width: 350px;">
+        </header>
+        <main>
+            <aside>
+                <ul>
+                    <li id="inboxTab">收件箱</li>
+                    <li id="sentTab">发件箱</li>
+                    <li id="composeTab">写邮件</li>
+                </ul>
+            </aside>
+            <section class="email-list" id="emailList"></section>
+            <section class="compose-email" id="composeEmail">
+                <br>
+                <input type="text" id="to" placeholder="收件人">
+                <input type="text" id="subject" placeholder="主题">
+                <textarea id="body" rows="5" placeholder="邮件内容"></textarea>
+                <button id="sendButton" style="background-color: #378378; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; width: 350px; height: 40px; font-size: 13px">发送</button>
+            </section>
+        </main>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const emailList = document.getElementById('emailList');
+            const composeEmail = document.getElementById('composeEmail');
+            const inboxTab = document.getElementById('inboxTab');
+            const sentTab = document.getElementById('sentTab');
+            const composeTab = document.getElementById('composeTab');
+            const sendButton = document.getElementById('sendButton');
+
+            inboxTab.addEventListener('click', () => {
+                emailList.style.display = 'block';
+                composeEmail.style.display = 'none';
+            });
+            sentTab.addEventListener('click', () => {
+                emailList.style.display = 'block';
+                composeEmail.style.display = 'none';
+            });
+            composeTab.addEventListener('click', () => {
+                emailList.style.display = 'none';
+                composeEmail.style.display = 'block';
+            });
+
+            sendButton.addEventListener('click', () => {
+                alert('邮件已发送！');
+                document.getElementById('to').value = '';
+                document.getElementById('subject').value = '';
+                document.getElementById('body').value = '';
+            });
+        });
+    </script>
+</body>
+</html>
